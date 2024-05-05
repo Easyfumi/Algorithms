@@ -2,7 +2,7 @@ package ru.marinin;
 
 import java.util.Scanner;
 
-public class Task_2_2 { // сортировка выбором
+public class SelectionSort { // сортировка выбором
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
