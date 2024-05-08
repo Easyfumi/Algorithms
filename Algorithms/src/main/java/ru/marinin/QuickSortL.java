@@ -2,7 +2,7 @@ package ru.marinin;
 
 import java.util.Scanner;
 
-public class qSortL {
+public class QuickSortL {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
