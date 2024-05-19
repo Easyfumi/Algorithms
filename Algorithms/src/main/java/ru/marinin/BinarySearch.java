@@ -31,12 +31,10 @@ public class BinarySearch {     // бинарный поиск
     public static int search(int[] numsArray, int searchingElement) {
         int rez = -1;
         int l = 0;
-        int r = numsArray.length - 1;
-        while (l+1<r) {
-
+        int r = numsArray.length;
+        while (l!=r-1) {
             int k = (r+l)/2;
             int mid = numsArray[k];
-
             if (mid==searchingElement) {
                 rez = k + 1;
                 break;
@@ -45,15 +43,10 @@ public class BinarySearch {     // бинарный поиск
             } else {
                 r = k;
             }
-
         }
 
-        if (numsArray[r]==searchingElement) {
-            rez = r + 1;
-        }
-
-        if (numsArray[l]==searchingElement) {
-            rez = l + 1;
+        if (numsArray[r-1]==searchingElement) {
+            rez = r;
         }
 
         return rez;
