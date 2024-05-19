@@ -1,4 +1,4 @@
-package ru.marinin;
+package ru.marinin.sort;
 
 import java.util.Comparator;
 import java.util.Scanner;

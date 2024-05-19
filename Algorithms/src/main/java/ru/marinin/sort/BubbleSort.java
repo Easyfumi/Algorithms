@@ -1,8 +1,8 @@
-package ru.marinin;
+package ru.marinin.sort;
 
 import java.util.Scanner;
 
-public class SelectionSort { // сортировка выбором
+public class BubbleSort {  // сортировка пузырьком
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -13,21 +13,17 @@ public class SelectionSort { // сортировка выбором
             array[i] = scanner.nextInt();
         }
 
-        for (int i = 0; i < n; i++) {
-            int secondIndex = i;
-            for (int j = i; j < n; j++) {
-                if (array[j] < array[secondIndex]) {
-                    secondIndex = j;
+        for (int i = n - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (array[i] > array[j]) {
+                    swap(array, i, j);
                 }
             }
-            swap(array, i, secondIndex);
         }
 
         for (int num : array) {
             System.out.println(num);
         }
-
-
     }
 
     public static void swap(int[] array, int indexFirst, int indexSecond) {
