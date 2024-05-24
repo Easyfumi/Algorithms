@@ -11,18 +11,18 @@ public class DynamicArrayTask {
         Scanner scanner = new Scanner(System.in);
         int n = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < n; i++) {
-           String str = scanner.nextLine();
-           if (str.equals("size")) {
-               System.out.println(dynamicArray.size());
-           } else if (str.equals("index")) {
-               int el = Integer.parseInt(scanner.nextLine());
-               System.out.println(dynamicArray.index(el));
-           } else if (str.equals("push_back")) {
-               int el = Integer.parseInt(scanner.nextLine());
-               dynamicArray.push_back(el);
-           } else if (str.equals("pop_back")) {
-               System.out.println(dynamicArray.pop_back());
-           }
+            String str = scanner.nextLine();
+            if (str.equals("size")) {
+                System.out.println(dynamicArray.size());
+            } else if (str.equals("index")) {
+                int el = Integer.parseInt(scanner.nextLine());
+                System.out.println(dynamicArray.index(el));
+            } else if (str.equals("push_back")) {
+                int el = Integer.parseInt(scanner.nextLine());
+                dynamicArray.pushBack(el);
+            } else if (str.equals("pop_back")) {
+                System.out.println(dynamicArray.popBack());
+            }
         }
     }
 }
@@ -42,11 +42,13 @@ class DynamicArray {
     public int capacity() {
         return capacity;
     }
+
     public int index(int i) {
         return array[i];
     }
+
     public void setByIndex(int i, int num) {
-        array[i]=num;
+        array[i] = num;
     }
 
     private void resize() {
@@ -58,7 +60,7 @@ class DynamicArray {
         array = copyArray;
     }
 
-    public void push_back(int num) {
+    public void pushBack(int num) {
         if (size - 1 == capacity) {
             this.resize();
         }
@@ -66,8 +68,8 @@ class DynamicArray {
         size++;
     }
 
-    public int pop_back() {
-        int el = array[size-1];
+    public int popBack() {
+        int el = array[size - 1];
         size--;
         return el;
     }
