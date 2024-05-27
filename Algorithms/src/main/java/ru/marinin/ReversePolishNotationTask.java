@@ -22,6 +22,8 @@ public class ReversePolishNotationTask {
                 int first = stack.pop();
                 int second = stack.pop();
                 stack.push(second/first);
+            } else {
+                throw new RuntimeException("некорректный пользовательский ввод!");
             }
         }
         System.out.println(stack.pop());
