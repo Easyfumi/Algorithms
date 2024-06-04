@@ -1,6 +1,4 @@
-package ru.marinin;
-
-import java.util.Scanner;
+package ru.marinin.data_structures;
 
 public class BinarySearchTreeTask {
     public static void main(String[] args) {

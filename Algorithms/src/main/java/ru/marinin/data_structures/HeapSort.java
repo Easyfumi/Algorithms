@@ -1,10 +1,10 @@
-package ru.marinin;
+package ru.marinin.data_structures;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class HeapTask {
+public class HeapSort {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = Integer.parseInt(scanner.nextLine());
@@ -13,22 +13,14 @@ public class HeapTask {
             array[i] = Integer.parseInt(scanner.nextLine());
         }
         Heap heap = new Heap(array);
-        int m = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < m; i++) {
-            String str = scanner.nextLine();
-            if (str.equals("GetMax")) {
-                System.out.println(heap.getMax());
-            } else if (str.equals("PopMax")) {
-                heap.popMax();
-            } else if (str.startsWith("Push")) {
-                String[] strings = str.split(" ");
-                heap.push(Integer.parseInt(strings[1]));
-            } else if (str.equals("IsEmpty")) {
-                System.out.println((heap.isEmpty()+"").toUpperCase());
-            }
+        for (int i = 0; i < n; i++) {
+            System.out.println(heap.getMax());
+            heap.popMax();
         }
     }
 }
+
+
 
 class Heap {
     private List<Integer> array;

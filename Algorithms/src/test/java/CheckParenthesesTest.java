@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.marinin.ValidParenthesesTask;
+import ru.marinin.algorithmic_tasks.ValidParenthesesTask;
 
 public class CheckParenthesesTest {
     @Test

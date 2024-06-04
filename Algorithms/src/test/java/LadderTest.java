@@ -1,6 +1,6 @@
 
 import org.junit.jupiter.api.Test;
-import ru.marinin.Ladder;
+import ru.marinin.algorithmic_tasks.Ladder;
 import org.junit.jupiter.api.Assertions;
 
 public class LadderTest {

@@ -1,4 +1,4 @@
-package ru.marinin;
+package ru.marinin.algorithmic_tasks;
 
 
 import java.util.Scanner;

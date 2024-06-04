@@ -1,4 +1,4 @@
-package ru.marinin;
+package ru.marinin.data_structures;
 
 import java.util.LinkedList;
 import java.util.Scanner;
