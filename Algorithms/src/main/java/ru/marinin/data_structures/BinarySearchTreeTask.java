@@ -52,18 +52,18 @@ public class BinarySearchTreeTask {
 }
 
 class BinarySearchTree {
-    private Node root;
+    private NodeForBST root;
 
     public BinarySearchTree() {
     }
 
     public void push(Integer elem) {
-        Node runner = root;
+        NodeForBST runner = root;
         if (runner == null) {
-            root = new Node(elem);
+            root = new NodeForBST(elem);
             return;
         }
-        Node parent = null;
+        NodeForBST parent = null;
         while (runner != null) {
             if (runner.value > elem) {
                 parent = runner;
@@ -75,9 +75,9 @@ class BinarySearchTree {
         }
 
         if (parent.value > elem) {
-            parent.left = new Node(elem);
+            parent.left = new NodeForBST(elem);
         } else {
-            parent.right = new Node(elem);
+            parent.right = new NodeForBST(elem);
         }
     }
 
@@ -85,7 +85,7 @@ class BinarySearchTree {
         if (root == null) {
             return 0;
         }
-        Node runner = root;
+        NodeForBST runner = root;
         while (runner.right != null) {
             runner = runner.right;
         }
@@ -96,7 +96,7 @@ class BinarySearchTree {
         if (root == null) {
             return 0;
         }
-        Node runner = root;
+        NodeForBST runner = root;
         while (runner.left != null) {
             runner = runner.left;
         }
@@ -111,8 +111,8 @@ class BinarySearchTree {
             root = root.left;
             return;
         }
-        Node runner = root;
-        Node parent = null;
+        NodeForBST runner = root;
+        NodeForBST parent = null;
         while (runner.right != null) {
             parent = runner;
             runner = runner.right;
@@ -132,8 +132,8 @@ class BinarySearchTree {
             root = root.right;
             return;
         }
-        Node runner = root;
-        Node parent = null;
+        NodeForBST runner = root;
+        NodeForBST parent = null;
         while (runner.left != null) {
             parent = runner;
             runner = runner.left;
@@ -146,7 +146,7 @@ class BinarySearchTree {
     }
 
     public boolean search(int elem) {
-        Node runner = root;
+        NodeForBST runner = root;
         while (runner != null) {
             if (runner.value < elem) {
                 runner = runner.right;
@@ -183,8 +183,8 @@ class BinarySearchTree {
                 return true;
             }
         } else {
-            Node runner = root;
-            Node parent = null;
+            NodeForBST runner = root;
+            NodeForBST parent = null;
             while (runner != null) {
                 if (runner.value < elem) {
                     parent = runner;
@@ -266,12 +266,12 @@ class BinarySearchTree {
 
 }
 
-class Node {
+class NodeForBST {
     Integer value;
-    Node left;
-    Node right;
+    NodeForBST left;
+    NodeForBST right;
 
-    public Node(int value) {
+    public NodeForBST(int value) {
         this.value = value;
     }
 
