@@ -1,4 +1,4 @@
-package ru.marinin;
+package ru.marinin.data_structures;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +30,12 @@ public class QueueTask {
 }
 
 class Queue {
-    private Stack leftStack;
-    private Stack rightStack;
+    private StackForQueue leftStack;
+    private StackForQueue rightStack;
 
     public Queue() {
-        leftStack = new Stack();
-        rightStack = new Stack();
+        leftStack = new StackForQueue();
+        rightStack = new StackForQueue();
     }
 
     public void push(String string) {
@@ -83,10 +83,10 @@ class Queue {
     }
 }
 
-class Stack {
+class StackForQueue {
     private List<String> list;
 
-    public Stack() {
+    public StackForQueue() {
         list = new ArrayList<>();
     }
 
