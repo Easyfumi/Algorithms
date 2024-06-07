@@ -20,15 +20,21 @@ public class TreapTask {
         treap.root.right.right = node1;
 
         System.out.println(treap);
+        treap.push(12);
+        Treap[] treaps = Treap.split(treap, 3);
+        System.out.println("LEFT:");
+        System.out.println(treaps[0]);
+        System.out.println("RIGHT:");
+        System.out.println(treaps[1]);
 
-        System.out.println("");
+        System.out.println("MAX");
+        System.out.println(treaps[0].getMax());
+        System.out.println("MIN");
+        System.out.println(treaps[0].getMin());
 
-        for (Treap t : Treap.split(treap,7)) {
-            System.out.println(t);
-        }
-
-
+        System.out.println(treap.find(3));
     }
+
 }
 
 class Treap {
@@ -42,18 +48,12 @@ class Treap {
 
     public static Treap[] split(Treap tree, int key) {
         Treap[] treaps = new Treap[2];
-        if (tree.root==null) return treaps;
-        if (key > tree.root.x && tree.root.right == null) {
-            return new Treap[]{tree,null};
-        }
-        if (key <= tree.root.x && tree.root.left == null) {
-            return new Treap[]{null, tree};
-        }
-        if (key > tree.root.x) {
+        if (tree.root == null) return treaps;
+        if (key >= tree.root.x) {
             Treap newTreap = new Treap();
             newTreap.root = tree.root.right;
             Treap[] newTreaps = split(newTreap, key);
-            tree.root.right = newTreaps[0].root;
+            tree.root.right = newTreaps[0] == null ? null : newTreaps[0].root;
             treaps[0] = tree;
             treaps[1] = newTreaps[1];
             return treaps;
@@ -68,12 +68,65 @@ class Treap {
         }
     }
 
-    public Treap merge(Treap left, Treap right) {
-        return null;
+    public static Treap merge(Treap left, Treap right) {
+        if (left == null) return right;
+        if (right == null) return left;
+        if (left.root == null) return right;
+        if (right.root == null) return left;
+        if (left.root.y >= right.root.y) {
+            Treap tempTreap = new Treap();
+            tempTreap.root = left.root.right;
+            left.root.right = merge(tempTreap, right).root;
+            return left;
+        } else {
+            Treap tempTreap = new Treap();
+            tempTreap.root = right.root.left;
+            right.root.left = merge(left, tempTreap).root;
+            return right;
+        }
     }
 
-    public void insert(int x) {
-
+    public void push(int x) {
+        NodeForTreap newNode = new NodeForTreap(x);
+        Treap newTreap = new Treap();
+        newTreap.root = newNode;
+        Treap[] treaps = Treap.split(this, x);
+        if (treaps[1] == null) {
+            this.root = Treap.merge(treaps[0], newTreap).root;
+        } else {
+            treaps[1].root = Treap.merge(newTreap, treaps[1]).root;
+            this.root = Treap.merge(treaps[0], treaps[1]).root;
+        }
+    }
+    public int getMax() {
+        if (this.root==null) {
+            return 0;
+        }
+        NodeForTreap tempRoot = this.root;
+        int max = tempRoot.x;
+        while (tempRoot.right!=null) {
+            max = tempRoot.right.x;
+            tempRoot.right = tempRoot.right.right==null ? null : tempRoot.right.right;
+        }
+        return max;
+    }
+    public int getMin() {
+        if (this.root==null) {
+            return 0;
+        }
+        NodeForTreap tempRoot = this.root;
+        int min = tempRoot.x;
+        while ( tempRoot.left!=null) {
+            min = tempRoot.left.x;
+            tempRoot.left= tempRoot.left.left==null ? null : tempRoot.left.left;
+        }
+        return min;
+    }
+    public boolean find(int x) {
+        Treap left = Treap.split(this, x)[0];
+//        if (left==null) return false;
+        int maxElem = left.getMax();
+        return x==maxElem;
     }
 
     @Override
