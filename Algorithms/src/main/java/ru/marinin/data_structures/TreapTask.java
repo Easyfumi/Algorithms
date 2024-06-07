@@ -2,59 +2,85 @@ package ru.marinin.data_structures;
 
 public class TreapTask {
     public static void main(String[] args) {
+        NodeForTreap node1 = new NodeForTreap(10);
+        NodeForTreap node2 = new NodeForTreap(3);
+        NodeForTreap node3 = new NodeForTreap(8);
+        NodeForTreap node4 = new NodeForTreap(6);
+        NodeForTreap node5 = new NodeForTreap(5);
+        NodeForTreap node6 = new NodeForTreap(9);
+        NodeForTreap node7 = new NodeForTreap(7);
+
         Treap treap = new Treap();
-        NodeForTreap root = new NodeForTreap(7, 10);
-        treap.root = root;
-        treap.root.left = new NodeForTreap(4, 6);
-        treap.root.right = new NodeForTreap(13, 8);
-        treap.root.left.left = new NodeForTreap(2, 4);
-        treap.root.left.right = new NodeForTreap(6, 2);
-        treap.root.right.left = new NodeForTreap(9, 7);
-        treap.root.right.right = new NodeForTreap(14, 4);
+        treap.root = node7;
+        treap.root.left = node5;
+        treap.root.right = node6;
+        treap.root.left.left = node2;
+        treap.root.left.right = node4;
+        treap.root.right.left = node3;
+        treap.root.right.right = node1;
+
         System.out.println(treap);
 
-        Treap[] treaps = treap.split(treap, 7);
+        System.out.println("");
+
+        for (Treap t : Treap.split(treap,7)) {
+            System.out.println(t);
+        }
 
 
     }
 }
 
 class Treap {
-    NodeForTreap root;
+
+    public NodeForTreap root;
+
 
     public Treap() {
+
     }
 
-    public Treap[] split(Treap tree, int key) {
+    public static Treap[] split(Treap tree, int key) {
         Treap[] treaps = new Treap[2];
-
-        if (tree.root == null) {
-            return treaps;
+        if (tree.root==null) return treaps;
+        if (key > tree.root.x && tree.root.right == null) {
+            return new Treap[]{tree,null};
         }
-        //todo: некорректно, падает в бесконечный цикл
+        if (key <= tree.root.x && tree.root.left == null) {
+            return new Treap[]{null, tree};
+        }
         if (key > tree.root.x) {
-            Treap tempRightTree = new Treap();
-            tempRightTree.root = this.root.right;
-            Treap[] tempArray = split(tempRightTree, key);
-            this.root.right = tempArray[0].root;
-            treaps[0].root = this.root;
-            treaps[1].root = tempArray[1].root;
+            Treap newTreap = new Treap();
+            newTreap.root = tree.root.right;
+            Treap[] newTreaps = split(newTreap, key);
+            tree.root.right = newTreaps[0].root;
+            treaps[0] = tree;
+            treaps[1] = newTreaps[1];
             return treaps;
         } else {
-            Treap tempLeftTree = new Treap();
-            tempLeftTree.root = this.root.left;
-            Treap[] tempArray = split(tempLeftTree, key);
-            this.root.left = tempArray[1].root;
-            treaps[0].root = tempArray[0].root;
-            treaps[1].root = this.root;
+            Treap newTreap = new Treap();
+            newTreap.root = tree.root.left;
+            Treap[] newTreaps = split(newTreap, key);
+            tree.root.left = newTreaps[1] == null ? null : newTreaps[1].root;
+            treaps[0] = newTreaps[0];
+            treaps[1] = tree;
             return treaps;
         }
+    }
+
+    public Treap merge(Treap left, Treap right) {
+        return null;
+    }
+
+    public void insert(int x) {
+
     }
 
     @Override
     public String toString() {
         return root.toString();
     }
+
 }
 
 class NodeForTreap {
@@ -64,10 +90,10 @@ class NodeForTreap {
     NodeForTreap left;
     NodeForTreap right;
 
-    public NodeForTreap(int x, int y) {
+    public NodeForTreap(int x) {
         this.x = x;
-        this.y = y;
-        // count++;
+        this.y = count;
+        count++;
         this.left = null;
         this.right = null;
     }
